@@ -1,0 +1,38 @@
+{
+    "title": "Matterbridge Tado° V3+ Hot Water Control",
+    "description": "Tado° Hot Water",
+    "type": "object",
+    "required": ["pollInterval"],
+    "properties": {
+        "name": {
+            "description": "Plugin name",
+            "type": "string",
+            "readOnly": true,
+            "ui:widget": "hidden"
+        },
+        "type": {
+            "description": "Plugin type",
+            "type": "string",
+            "readOnly": true,
+            "ui:widget": "hidden"
+        },
+        "pollInterval": {
+            "description": "Polling interval in seconds",
+            "type": "integer",
+            "minimum": 30,
+            "maximum": 3600,
+            "default": 300
+        },
+        "debug": {
+            "description": "Enable plugin debug (development only)",
+            "type": "boolean",
+            "default": false
+        },
+        "unregisterOnShutdown": {
+            "description": "Unregister all devices on shutdown (development only)",
+            "type": "boolean",
+            "default": false,
+            "ui:widget": "hidden"
+        }
+    }
+}
