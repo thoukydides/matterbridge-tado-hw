@@ -22,6 +22,7 @@ Tado is a trademark of [tado GmbH](https://www.tado.com/).
 
 1. Open the Matterbridge web interface, e.g. at http://localhost:8283/.
 1. Under *Install plugins* type `matterbridge-tado-hw` in the *Plugin name or plugin path* search box, and click *Install ⬇️*.
+1. The Matterbridge log output will include an authorisation URL. Copy the listed URL into a web browser, login to your tado° account, and approve access.
 
 <details>
 <summary>Alternative method using command line (and advanced configuration)</summary>
@@ -30,27 +31,37 @@ Tado is a trademark of [tado GmbH](https://www.tado.com/).
 
 1. Stop Matterbridge:  
    `systemctl stop matterbridge`
-2. Install the plugin:  
+1. Install the plugin:  
    `npm install -g matterbridge-tado-hw`
-3. Register it with Matterbridge:  
+1. Register it with Matterbridge:  
    `matterbridge -add matterbridge-tado-hw`
-4. Restart Matterbridge:  
+1. Restart Matterbridge:  
    `systemctl start matterbridge`
+1. The Matterbridge log output will include an authorisation URL. Copy the listed URL into a web browser, login to your tado° account, and approve access.
 
 #### Example `matterbridge-tado-hw.config.json`
+```JSON
+{
+    "name": "matterbridge-tado-hw",
+    "type": "DynamicPlatform"
+}
+```
+The configuration file will be generated automatically with appropriate defaults.
+
+#### Advanced Configuration
+
+You can include additional settings in `config.json` to customise the behaviour or enable special debug features:
 ```JSON
 {
     "name": "matterbridge-tado-hw",
     "type": "DynamicPlatform",
     "pollInterval": 300,
     "debug": false,
-    "unregisterOnShutdown": false,
-    "version": "0.0.1"
+    "unregisterOnShutdown": false
 }
 ```
-The configuration file will be generated automatically with appropriate defaults.
 
-`pollInterval` specifies the interval in seconds between polling the tado° API for the hot water zone status. The default is 5 minutes (`300` seconds).
+`pollInterval` specifies the interval in seconds between polling the tado° API for the hot water zone status. The default is `300` seconds (5 minutes).
 
 `debug` enables additional logging which may help with debugging any problems.
 
