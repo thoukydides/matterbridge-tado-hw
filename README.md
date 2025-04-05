@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/wiki/thoukydides/matterbridge-tado-hw/matterbridge-tado-hw.png" height="200"></a>
+  <img src="https://raw.githubusercontent.com/wiki/thoukydides/matterbridge-tado-hw/matterbridge-tado-hw.png" height="200">
 </p>
 <div align=center>
 
@@ -28,10 +28,14 @@ Tado is a trademark of [tado GmbH](https://www.tado.com/).
 
 #### Installation using Command Line
 
-1. Stop Matterbridge: `systemctl stop matterbridge`
-1. Install this plugin using: `npm install -g matterbridge-tado-hw`
-1. Add the plugin to Matterbridge: `matterbridge -add matterbridge-tado-hw`
-1. Start Matterbridge: `systemctl start matterbridge`
+1. Stop Matterbridge:  
+   `systemctl stop matterbridge`
+2. Install the plugin:  
+   `npm install -g matterbridge-tado-hw`
+3. Register it with Matterbridge:  
+   `matterbridge -add matterbridge-tado-hw`
+4. Restart Matterbridge:  
+   `systemctl start matterbridge`
 
 #### Example `matterbridge-tado-hw.config.json`
 ```JSON
@@ -54,7 +58,7 @@ The configuration file will be generated automatically with appropriate defaults
 
 ## Functionality
 
-This plugin exposes the hot water control of tado° V3+ (or earlier) Extension Kit (BU01) or Wireless Receiver (EK01) units as Matter On/Off Switches. No other functions are supported (including the hot water temperature).
+The plugin exposes hot water control of tado° V3+ (or earlier) Extension Kit (BU01) or Wireless Receiver (EK01) units as Matter On/Off Switches. Other functions (such as setting hot water temperature) are not supported.
 
 Tado° X is not supported.
 
