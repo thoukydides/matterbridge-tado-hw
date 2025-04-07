@@ -11,7 +11,10 @@
         "hotwater",
         "hot-water"
     ],
-    "author": "Alexander Thoukydides (https://www.thouky.co.uk/)",
+    "author": {
+        "name": "Alexander Thoukydides",
+        "url": "https://www.thouky.co.uk/"
+    },
     "funding": [
         {
             "type": "github",
@@ -32,11 +35,14 @@
     ],
     "repository": {
         "type": "git",
-        "url": "git://github.com/thoukydides/matterbridge-tado-hw.git"
+        "url": "git+https://github.com/thoukydides/matterbridge-tado-hw.git"
     },
     "bugs": {
         "url": "https://github.com/thoukydides/matterbridge-tado-hw/issues"
     },
+    "homepage": "https://github.com/thoukydides/matterbridge-tado-hw",
+    "help": "https://github.com/thoukydides/matterbridge-tado-hw#readme",
+    "changelog": "https://github.com/thoukydides/matterbridge-tado-hw/blob/master/CHANGELOG.md",
     "type": "module",
     "main": "dist/index.js",
     "engines": {
