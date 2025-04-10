@@ -23,7 +23,7 @@ export const PLATFORM_NAME  = PACKAGE.displayName;
 export const PLUGIN_VERSION = PACKAGE.version;
 
 // Matter identifiers
-export const VENDOR_ID      = 0xFFF1; // (0xFFF1~0xFFF4 allocated for testing)
+export const VENDOR_ID      = 0x134E;
 export const VENDOR_NAME    = 'Tado°';
 export const PRODUCT_NAME   = 'Hot Water';
 
