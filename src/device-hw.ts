@@ -69,7 +69,7 @@ export class TadoHWDevice {
 
     // Start polling the device and set the initial state
     start(): void {
-        void this.pollPower(true);
+        void this.pollPower();
         this.pollInterval = setInterval(
             () => void this.pollPower(),
             this.config.pollInterval * MS
@@ -97,21 +97,17 @@ export class TadoHWDevice {
         try {
             this.log.info(`Setting power ${on ? 'ON' : 'OFF'}`);
             await this.tadoHWZone.setPower(on);
-            await this.switch.setAttribute(OnOff.Cluster.id, 'onOff', on, this.log);
+            await this.switch.updateAttribute(OnOff.Cluster.id, 'onOff', on, this.log);
         } catch (err) {
             logError(this.log, 'Set power', err);
         }
     }
 
     // Poll the hot water zone for its current state
-    async pollPower(alwaysSet = false): Promise<void> {
+    async pollPower(): Promise<void> {
         try {
             const on = await this.tadoHWZone.getPower();
-            const matterOn = this.switch.getAttribute(OnOff.Cluster.id, 'onOff', this.log) as unknown;
-            if (alwaysSet || matterOn !== on) {
-                this.log.info(`Power is ${on ? 'ON' : 'OFF'}`);
-                await this.switch.setAttribute(OnOff.Cluster.id, 'onOff', on, this.log);
-            }
+            await this.switch.updateAttribute(OnOff.Cluster.id, 'onOff', on, this.log);
         } catch (err) {
             logError(this.log, 'Poll power', err);
         }
