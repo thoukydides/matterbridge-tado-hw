@@ -4,6 +4,10 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+## [v0.3.0] - 2025-04-14
+### Added
+* Support `whiteList` and `blackList` configuration options to select devices.
+
 ## [v0.2.0] - 2025-04-10
 ### Changed
 * Simplified attribute update to reduce log noise.
