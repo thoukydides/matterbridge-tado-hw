@@ -10,12 +10,12 @@ import { DEFAULT_CONFIG, PLUGIN_NAME } from './settings.js';
 import { Config } from './config-types.js';
 
 // Check that the configuration is valid
-export function checkConfiguration(log: AnsiLogger, platformConfig: PlatformConfig): Config {
+export function checkConfiguration(log: AnsiLogger, platformConfig: PlatformConfig): Config & PlatformConfig {
     // Apply default values
     const config = deepMerge(DEFAULT_CONFIG, platformConfig) as PlatformConfig;
 
     // Ensure that all required fields are provided and are of suitable types
-    const checker = checkers.PluginConfig;
+    const checker = checkers.Config;
     checker.setReportedPath('<PLATFORM_CONFIG>');
     const strictValidation = checker.strictValidate(config);
     if (!checker.test(config)) {

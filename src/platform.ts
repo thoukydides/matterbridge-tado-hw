@@ -16,7 +16,7 @@ import { plural } from './utils.js';
 export class TadoHWPlatform extends MatterbridgeDynamicPlatform {
 
     // Strongly typed configuration
-    declare config: Config;
+    declare config: Config & PlatformConfig;
 
     // Persistent storage
     persist:        NodePersist.LocalStorage;

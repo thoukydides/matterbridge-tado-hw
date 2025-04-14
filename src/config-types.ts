@@ -1,10 +1,8 @@
 // Matterbridge plugin for Tado hot water control
 // Copyright © 2025 Alexander Thoukydides
 
-import { PlatformConfig } from 'matterbridge';
-
 // The user plugin configuration
-export interface PluginConfig {
+export interface Config {
     // Matterbridge additions
     name:                   string;
     type:                   string;
@@ -16,4 +14,3 @@ export interface PluginConfig {
     debug:                  boolean;
     unregisterOnShutdown:   boolean;
 }
-export type Config = PlatformConfig & PluginConfig;
