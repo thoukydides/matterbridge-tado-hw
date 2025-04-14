@@ -31,6 +31,8 @@ export const PRODUCT_NAME   = 'Hot Water';
 export const DEFAULT_CONFIG: Partial<Config> = {
     name:                   PLUGIN_NAME,
     type:                   'DynamicPlatform',
+    whiteList:              [],
+    blackList:              [],
     pollInterval:           5 * 60, // 5 minutes
     debug:                  false,
     unregisterOnShutdown:   false

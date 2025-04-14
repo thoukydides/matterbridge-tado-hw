@@ -15,7 +15,7 @@ export function checkConfiguration(log: AnsiLogger, platformConfig: PlatformConf
     const config = deepMerge(DEFAULT_CONFIG, platformConfig) as PlatformConfig;
 
     // Ensure that all required fields are provided and are of suitable types
-    const checker = checkers.Config;
+    const checker = checkers.PluginConfig;
     checker.setReportedPath('<PLATFORM_CONFIG>');
     const strictValidation = checker.strictValidate(config);
     if (!checker.test(config)) {

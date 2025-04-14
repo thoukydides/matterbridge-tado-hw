@@ -15,48 +15,64 @@ import { plural } from './utils.js';
 // A Tado hot water control platform
 export class TadoHWPlatform extends MatterbridgeDynamicPlatform {
 
-    myConfig:   Config;
-    persist:    NodePersist.LocalStorage;
-    tadoAPI?:   TadoAPI;
-    devices:    TadoHWDevice[] = [];
+    // Strongly typed configuration
+    declare config: Config;
+
+    // Persistent storage
+    persist:        NodePersist.LocalStorage;
+
+    // Active devices
+    devices:        TadoHWDevice[] = [];
 
     // Constructor
     constructor(matterbridge: Matterbridge, log: AnsiLogger, config: PlatformConfig) {
-        super(matterbridge, log, config);
+        // Check the configuration and initialise the platform
+        const checkedConfig = checkConfiguration(log, config);
+        log.info(`Initialising platform "${checkedConfig.name}"`);
+        super(matterbridge, log, checkedConfig);
 
-        // Check the dependencies and configuration
+        // Check the dependencies
         checkDependencyVersions(this);
-        this.myConfig = checkConfiguration(log, config);
-        this.log.info(`Initialising platform "${this.myConfig.name}"`);
 
         // Create storage for this plugin (initialised in onStart)
-        const persistDir = Path.join(this.matterbridge.matterbridgePluginDirectory, this.myConfig.name, 'persist');
+        const persistDir = Path.join(this.matterbridge.matterbridgePluginDirectory, this.config.name, 'persist');
         this.persist = NodePersist.create({ dir: persistDir });
     }
 
     // Create the device and clusters when Matterbridge loads the plugin
     override async onStart(reason?: string): Promise<void> {
-        this.log.info(`Starting "${this.myConfig.name}": ${reason ?? 'none'}`);
+        this.log.info(`Starting "${this.config.name}": ${reason ?? 'none'}`);
+
+        // Wait for the platform to start
+        await this.ready;
+        await this.clearSelect();
 
         // Initialise persistent storage
         await this.persist.init();
 
         // Initialise the Tado API
-        this.tadoAPI = new TadoAPI(this.log, this.myConfig, this.persist);
+        const tadoAPI = new TadoAPI(this.log, this.config, this.persist);
 
         // Create a device for each hot water zone
-        const zonesHW = await this.tadoAPI.getHWZones();
+        const zonesHW = await tadoAPI.getHWZones();
         this.log.info(`${plural(zonesHW.length, 'hot water zone')} found in Tado account`);
         for (const zone of zonesHW) {
-            const endpoint = new TadoHWDevice(this.myConfig, zone);
-            await this.registerDevice(endpoint.endpoint);
-            this.devices.push(endpoint);
+            // Create the device
+            const device = new TadoHWDevice(this.config, zone);
+            const { serialNumber, deviceName } = zone;
+            this.setSelectDevice(serialNumber, deviceName, undefined, 'hub');
+
+            // Register the device unless blocked by the black/white lists
+            if (this.validateDevice(deviceName)) {
+                await this.registerDevice(device.endpoint);
+                this.devices.push(device);
+            }
         }
     }
 
     // Configure and initialise the device when the platform is commissioned
     override async onConfigure(): Promise<void> {
-        this.log.info(`Configuring "${this.myConfig.name}"`);
+        this.log.info(`Configuring "${this.config.name}"`);
         await super.onConfigure();
 
         // Start polling the devices
@@ -67,7 +83,7 @@ export class TadoHWPlatform extends MatterbridgeDynamicPlatform {
 
     // Cleanup resources when Matterbridge is shutting down
     override async onShutdown(reason?: string): Promise<void> {
-        this.log.info(`Shutting down "${this.myConfig.name}": ${reason ?? 'none'}`);
+        this.log.info(`Shutting down "${this.config.name}": ${reason ?? 'none'}`);
         await super.onShutdown(reason);
 
         // Stop polling the devices
@@ -76,7 +92,7 @@ export class TadoHWPlatform extends MatterbridgeDynamicPlatform {
         }
 
         // Remove the devices from Matterbridge during development
-        if (this.myConfig.unregisterOnShutdown) {
+        if (this.config.unregisterOnShutdown) {
             await this.unregisterAllDevices();
         }
     }
