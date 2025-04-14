@@ -26,13 +26,12 @@ export class TadoHWPlatform extends MatterbridgeDynamicPlatform {
 
     // Constructor
     constructor(matterbridge: Matterbridge, log: AnsiLogger, config: PlatformConfig) {
-        // Check the configuration and initialise the platform
-        const checkedConfig = checkConfiguration(log, config);
-        log.info(`Initialising platform "${checkedConfig.name}"`);
-        super(matterbridge, log, checkedConfig);
+        super(matterbridge, log, config);
 
-        // Check the dependencies
+        // Check the dependencies and configuration
         checkDependencyVersions(this);
+        checkConfiguration(log, config);
+        log.info(`Initialising platform "${this.config.name}"`);
 
         // Create storage for this plugin (initialised in onStart)
         const persistDir = Path.join(this.matterbridge.matterbridgePluginDirectory, this.config.name, 'persist');

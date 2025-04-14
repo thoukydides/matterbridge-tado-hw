@@ -10,9 +10,9 @@ import { DEFAULT_CONFIG, PLUGIN_NAME } from './settings.js';
 import { Config } from './config-types.js';
 
 // Check that the configuration is valid
-export function checkConfiguration(log: AnsiLogger, platformConfig: PlatformConfig): Config & PlatformConfig {
+export function checkConfiguration(log: AnsiLogger, config: PlatformConfig): asserts config is Config & PlatformConfig {
     // Apply default values
-    const config = deepMerge(DEFAULT_CONFIG, platformConfig) as PlatformConfig;
+    Object.assign(config, deepMerge(DEFAULT_CONFIG, config));
 
     // Ensure that all required fields are provided and are of suitable types
     const checker = checkers.Config;
@@ -29,9 +29,6 @@ export function checkConfiguration(log: AnsiLogger, platformConfig: PlatformConf
         log.warn('Unsupported fields in plugin configuration will be ignored:');
         logCheckerValidation(log, config, LogLevel.WARN, strictValidation);
     }
-
-    // Return the checked configuration
-    return config;
 }
 
 // Log configuration checker validation errors
