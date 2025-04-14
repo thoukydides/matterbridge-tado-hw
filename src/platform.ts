@@ -35,7 +35,7 @@ export class TadoHWPlatform extends MatterbridgeDynamicPlatform {
         checkConfiguration(log, config);
 
         // Create storage for this plugin (initialised in onStart)
-        const persistDir = Path.join(this.matterbridge.matterbridgePluginDirectory, this.config.name, 'persist');
+        const persistDir = Path.join(this.matterbridge.matterbridgePluginDirectory, PLUGIN_NAME, 'persist');
         this.persist = NodePersist.create({ dir: persistDir });
     }
 

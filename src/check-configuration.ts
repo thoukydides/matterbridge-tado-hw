@@ -35,7 +35,7 @@ export function checkConfiguration(log: AnsiLogger, config: PlatformConfig): ass
 function logCheckerValidation(log: AnsiLogger, config: PlatformConfig, level: LogLevel, errors: IErrorDetail[] | null): void {
     const errorLines = errors ? getValidationTree(errors) : [];
     errorLines.forEach(line => { log.log(level, line); });
-    log.info(`${typeof config.name === 'string' ? config.name : PLUGIN_NAME}.config.json:`);
+    log.info(`${PLUGIN_NAME}.config.json:`);
     const configLines = JSON.stringify(config, null, 4).split('\n');
     configLines.forEach(line => { log.info(`    ${line}`); });
 }
