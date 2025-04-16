@@ -31,5 +31,7 @@ export const PRODUCT_NAME   = 'Hot Water';
 export const DEFAULT_CONFIG: Partial<Config> = {
     whiteList:              [],
     blackList:              [],
-    pollInterval:           5 * 60 // 5 minutes
+    pollInterval:           5 * 60, // 5 minutes
+    debug:                  false,
+    unregisterOnShutdown:   false
 };
