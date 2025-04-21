@@ -1,5 +1,5 @@
 {
-    "title": "Matterbridge Tado° V3+ Hot Water Control",
+    "title": "Matterbridge Tado° V2/V3/V3+ Hot Water Control",
     "description": "Tado° Hot Water",
     "type": "object",
     "required": ["pollInterval"],

@@ -9,17 +9,18 @@ jobs:
     strategy:
       matrix:
         node-version: [18.x, 20.x, 22.x]
+        use-matterbridge-edge: [true, false]
 
     steps:
-      - uses: actions/checkout@v4
-
-      - name: Use Node.js ${{ matrix.node-version }} 
-        uses: actions/setup-node@v4
+      - name: Checkout project
+        uses: actions/checkout@v4
+  
+      - name: Prepare build environment
+        id: prepare
+        uses: ./.github/actions/prepare-environment
         with:
           node-version: ${{ matrix.node-version }}
-
-      - name: Install dependencies
-        run: npm ci
+          use-matterbridge-edge: ${{ matrix.use-matterbridge-edge }} 
 
       - name: Build the project
         run: npm run build

@@ -10,7 +10,7 @@
 [![npm](https://badgen.net/npm/dw/matterbridge-tado-hw)](https://www.npmjs.com/package/matterbridge-tado-hw)
 [![Build and Lint](https://github.com/thoukydides/matterbridge-tado-hw/actions/workflows/build.yml/badge.svg)](https://github.com/thoukydides/matterbridge-tado-hw/actions/workflows/build.yml)
 
-Tado° V3+ hot water control plugin for [Matterbridge](https://github.com/Luligu/matterbridge).
+Tado° V2/V3/V3+ hot water control plugin for [Matterbridge](https://github.com/Luligu/matterbridge).
 
 </div>
 
@@ -69,7 +69,7 @@ You can include additional settings in `config.json` to customise the behaviour 
 
 ## Functionality
 
-The plugin exposes hot water control of tado° V3+ (or earlier) Extension Kit (BU01) or Wireless Receiver (EK01) units as Matter On/Off Switches. Other functions (such as setting hot water temperature) are not supported.
+The plugin exposes hot water control of tado° V2/V3/V3+ Extension Kit (BU01) or Wireless Receiver (EK01) units as Matter On/Off Switches. Other functions (such as setting hot water temperature) are not supported.
 
 Tado° X is not supported.
 

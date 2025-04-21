@@ -9,12 +9,24 @@
     "eslint.enable": true,
     "cSpell.words": [
         "aeiou",
+        "amazonwebservices",
+        "bierner",
         "buymeacoffee",
+        "dbaeumer",
+        "devcontainers",
         "hotwater",
+        "journalctl",
         "Matterbridge",
+        "mattercontroller",
+        "matterlogger",
+        "mattermap",
+        "mxsdev",
         "nodemon",
+        "Schoel",
         "Tado",
-        "Thoukydides"
+        "tadomap",
+        "Thoukydides",
+        "tyriar"
     ],
     "files.exclude": {
         "node_modules/": true
