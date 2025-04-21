@@ -1,0 +1,66 @@
+name: 🚧 Feature request
+description: Suggest a new feature or other enhancement.
+labels: ["enhancement"]
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Before creating a new feature request, please search [closed/rejected issues](https://github.com/thoukydides/matterbridge-tado-hw/issues?q=is%3Aissue) to avoid duplicates.
+
+        🚨 Feature requests that propose any of the following are unlikely to be accepted:
+        - Disabling or suppressing existing functionality via additional configuration options
+        - Using Matter clusters in ways that violate CSA specifications
+        - Implementing Matter clusters that are not supported by Apple Home
+        - Duplicating functionality that tado° already exposes to HomeKit natively
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Description of Enhancement
+      description: |
+        Describe the feature or improvement you would like to see. 
+        Be specific: What problem does it solve? How would a user experience it differently?
+    validations:
+      required: true
+
+  - type: textarea
+    id: tadomap
+    attributes:
+      label: Tado° API
+      description: |
+        Suggest how this feature could be supported using [node-tado-client](https://mattdavis90.github.io/node-tado-client/), or the underlying tado° API.
+    validations:
+      required: false
+
+  - type: textarea
+    id: mattermap
+    attributes:
+      label: Matter Mapping
+      description: |
+        Suggest which Matter cluster(s) from the [Matter Application Cluster Specification](https://csa-iot.org/developer-resource/specifications-download-request/) might apply.
+
+        Note: Apple Home only supports a subset of Matter clusters. The most accurate (though incomplete) information is available in [this Apple support article](https://support.apple.com/en-gb/102135). It does not yet reflect recent additions such as robot vacuum (added in iOS 18.4).
+
+        If the requested feature maps to a Matter cluster that is unsupported by Apple Home it is unlikely to be implemented, even if technically valid within Matter.
+    validations:
+      required: false
+
+  - type: input
+    id: device
+    attributes:
+      label: Tado° Device(s)
+      description: |
+        If this enhancement relates to a specific device, please provide the device name, model number, and firmware version.
+      placeholder: "e.g. Extension Kit V3P-EK01-TC-ML firmware 81.1"
+    validations:
+      required: false
+
+  - type: markdown
+    attributes:
+      value: |
+        **Important notes:**
+        - Feature requests must be compatible with both the Matter specification and the Tado° API.
+        - Requests that fall outside the scope of either are unlikely to be implemented.
+        - Functionality that is incompatible with Apple Home, or duplicates existing HomeKit exposure, will be rejected.
+        - Detailed, actionable suggestions with clear technical rationale are far more likely to be considered.
