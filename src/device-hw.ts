@@ -4,10 +4,10 @@
 import {
     bridgedNode,
     MatterbridgeEndpoint,
-    OnOff,
     onOffSwitch,
     powerSource
 } from 'matterbridge';
+import { OnOff } from 'matterbridge/matter/clusters';
 import { AnsiLogger } from 'matterbridge/logger';
 import { Config } from './config-types.js';
 import { PLUGIN_VERSION, VENDOR_ID, VENDOR_NAME } from './settings.js';
