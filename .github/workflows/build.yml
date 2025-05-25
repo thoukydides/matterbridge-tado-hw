@@ -9,6 +9,7 @@ jobs:
     strategy:
       matrix:
         node-version: [20.x, 22.x]
+        matterbridge-branch: ['', 'dev']
 
     steps:
       - name: Checkout project
@@ -18,6 +19,7 @@ jobs:
         uses: ./.github/actions/prepare-environment
         with:
           node-version: ${{ matrix.node-version }}
+          matterbridge-branch: ${{ matrix.matterbridge-branch }}
 
       - name: Build the project
         run: npm run build
