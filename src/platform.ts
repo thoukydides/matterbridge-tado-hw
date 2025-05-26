@@ -11,7 +11,7 @@ import { checkConfiguration } from './check-configuration.js';
 import { TadoHWDevice } from './device-hw.js';
 import { TadoAPI } from './tado.js';
 import { plural } from './utils.js';
-import { PLUGIN_NAME } from './settings.js';
+import { PLATFORM_NAME, PLUGIN_NAME } from './settings.js';
 
 // A Tado hot water control platform
 export class TadoHWPlatform extends MatterbridgeDynamicPlatform {
@@ -27,6 +27,7 @@ export class TadoHWPlatform extends MatterbridgeDynamicPlatform {
 
     // Constructor
     constructor(matterbridge: Matterbridge, log: AnsiLogger, config: PlatformConfig) {
+        log.logName = PLATFORM_NAME;
         log.info(`Initialising platform ${PLUGIN_NAME}`);
         super(matterbridge, log, config);
 
