@@ -78,7 +78,7 @@ export class TadoHWPlatform extends MatterbridgeDynamicPlatform {
             this.setSelectDevice(serialNumber, deviceName, undefined, 'hub');
 
             // Register the device unless blocked by the black/white lists
-            if (this.validateDevice(deviceName)) {
+            if (this.validateDevice(serialNumber)) {
                 await this.registerDevice(device.endpoint);
                 this.devices.push(device);
             }

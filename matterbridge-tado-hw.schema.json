@@ -16,24 +16,6 @@
             "readOnly": true,
             "ui:widget": "hidden"
         },
-        "whiteList": {
-            "description": "Only the devices in the list will be exposed. If the list is empty, all the devices will be exposed.",
-            "type": "array",
-            "items": {
-                "type": "string"
-            },
-            "uniqueItems": true,
-            "selectFrom": "name"
-        },
-        "blackList": {
-            "description": "The devices in the list will not be exposed. If the list is empty, no devices will be excluded.",
-            "type": "array",
-            "items": {
-                "type": "string"
-            },
-            "uniqueItems": true,
-            "selectFrom": "name"
-        },
         "pollInterval": {
             "description": "Polling interval in seconds",
             "type": "integer",
@@ -41,13 +23,31 @@
             "maximum": 3600,
             "default": 300
         },
+        "whiteList": {
+            "description": "Only expose hot water controllers listed here, identified by their serial number. Leave empty to expose all devices.",
+            "type": "array",
+            "items": {
+                "type": "string"
+            },
+            "uniqueItems": true,
+            "selectFrom": "serial"
+        },
+        "blackList": {
+            "description": "Exclude any hot water controllers listed here, identified by their serial number. Leave empty to expose all devices.",
+            "type": "array",
+            "items": {
+                "type": "string"
+            },
+            "uniqueItems": true,
+            "selectFrom": "serial"
+        },
         "debug": {
-            "description": "Enable plugin debug (development only)",
+            "description": "Capture debug-level logging from this plugin, overriding the Matterbridge global log level setting.",
             "type": "boolean",
             "default": false
         },
         "unregisterOnShutdown": {
-            "description": "Unregister all devices on shutdown (development only)",
+            "description": "Unregister all exposed devices on shutdown (used for development/testing).",
             "type": "boolean",
             "default": false,
             "ui:widget": "hidden"

@@ -87,6 +87,7 @@
         "clean": "rimraf ./dist",
         "lint": "eslint eslint.config.mjs 'bin/**/*.ts' 'src/**/*.ts' --max-warnings=0",
         "postversion": "git push && git push --tags",
-        "prepublishOnly": "npm run build && npm run lint"
+        "prepublishOnly": "npm run build && npm run lint",
+        "test": "tsx bin/test-startup.ts"
     }
 }

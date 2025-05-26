@@ -9,73 +9,76 @@
 [![npm](https://badgen.net/npm/dt/matterbridge-tado-hw)](https://www.npmjs.com/package/matterbridge-tado-hw)
 [![npm](https://badgen.net/npm/dw/matterbridge-tado-hw)](https://www.npmjs.com/package/matterbridge-tado-hw)
 [![Build and Lint](https://github.com/thoukydides/matterbridge-tado-hw/actions/workflows/build.yml/badge.svg)](https://github.com/thoukydides/matterbridge-tado-hw/actions/workflows/build.yml)
+[![Test](https://github.com/thoukydides/matterbridge-tado-hw/actions/workflows/test.yml/badge.svg)](https://github.com/thoukydides/matterbridge-tado-hw/actions/workflows/test.yml)
 
-Tado° V2/V3/V3+ hot water control plugin for [Matterbridge](https://github.com/Luligu/matterbridge).
+A [Matterbridge](https://github.com/Luligu/matterbridge) plugin that connects [Tado°](https://www.tado.com/) V2/V3/V3+ hot water control  
+to the [Matter](https://csa-iot.org/all-solutions/matter/) smart home ecosystem.
 
 </div>
 
 Tado is a trademark of [tado GmbH](https://www.tado.com/).
 
 ## Installation
-
-#### Recommended Approach using Matterbridge Frontend
-
 1. Open the Matterbridge web interface, e.g. at http://localhost:8283/.
 1. Under *Install plugins* type `matterbridge-tado-hw` in the *Plugin name or plugin path* search box, and click *Install ⬇️*.
 1. The Matterbridge log output will include an authorisation URL. Copy the listed URL into a web browser, login to your tado° account, and approve access.
 
 <details>
-<summary>Alternative method using command line (and advanced configuration)</summary>
+<summary>Command Line Installation</summary>
 
-#### Installation using Command Line
-
+### Installation using Command Line
 1. Stop Matterbridge:  
-   `systemctl stop matterbridge`
+   `sudo systemctl stop matterbridge`
 1. Install the plugin:  
    `npm install -g matterbridge-tado-hw`
 1. Register it with Matterbridge:  
-   `matterbridge -add matterbridge-tado-hw`
+   `sudo -u matterbridge matterbridge -add matterbridge-tado-hw`
 1. Restart Matterbridge:  
-   `systemctl start matterbridge`
+   `sudo systemctl start matterbridge`
 1. The Matterbridge log output will include an authorisation URL. Copy the listed URL into a web browser, login to your tado° account, and approve access.
 
 #### Example `matterbridge-tado-hw.config.json`
+
 ```JSON
 {
-    "name": "matterbridge-tado-hw",
-    "type": "DynamicPlatform"
-}
-```
-The configuration file will be generated automatically with appropriate defaults.
-
-#### Advanced Configuration
-
-You can include additional settings in `config.json` to customise the behaviour or enable special debug features:
-```JSON
-{
-    "name": "matterbridge-tado-hw",
-    "type": "DynamicPlatform",
-    "pollInterval": 300,
-    "debug": false,
+    "name":                 "matterbridge-tado-hw",
+    "type":                 "DynamicPlatform",
+    "pollInterval":         300,
+    "blackList":            [],
+    "whiteList":            [],
+    "debug":                false,
     "unregisterOnShutdown": false
 }
 ```
 
-`pollInterval` specifies the interval in seconds between polling the tado° API for the hot water zone status. The default is `300` seconds (5 minutes).
+</details>
+<details>
+<summary>Advanced Configuration Options</summary>
 
-`debug` enables additional logging which may help with debugging any problems.
+### Advanced Configuration
+
+You can include additional settings in `matterbridge-tado-hw.config.json` to customise the behaviour or enable special debug features:
+
+| Key                     | Default            | Description
+| ----------------------- | ------------------ | ---
+| `name`<br>`type`<br>`version` | n/a          | These are managed by Matterbridge and do not need to be set manually.
+| `pollInterval`          | 300                | Specifies the interval in seconds between polling the tado° API for the hot water zone status.
+| `blackList`             | `[]`               | If the list is not empty, then any hot water control devices with matching serial numbers will not be exposed as Matter devices.
+| `whiteList`             | `[]`               | If the list is not empty, then only hot water control devices with matching serial numbers (and not on the `blacklist`) will be exposed as Matter devices.
+| `debug`                 | `false`            | Sets the logger level for this plugin to *Debug*, overriding the global Matterbridge logger level setting.
+| `unregisterOnShutdown`  | `false`            | Unregister all exposed devices on shutdown. This is used during development and testing; do not set it for normal use.
 
 </details>
 
 ## Functionality
 
-The plugin exposes hot water control of tado° V2/V3/V3+ Extension Kit (BU01) or Wireless Receiver (EK01) units as Matter On/Off Switches. Other functions (such as setting hot water temperature) are not supported.
+The plugin exposes hot water control of tado° V2/V3/V3+ Extension Kit (BU01) or Wireless Receiver (EK01) units as Matter On/Off Switches. Other functionality is natively exposed to HomeKit by the tado° devices, so is not duplicated by this plugin.
 
 Tado° X is not supported.
 
 ## Changelog
 
-All notable changes to this project are documented in the [CHANGELOG.md](CHANGELOG.md) file.
+All notable changes to this project are documented in [`CHANGELOG.md`](CHANGELOG.md).
 
 ## Reporting Issues
           
@@ -83,7 +86,7 @@ If you have discovered an issue or have an idea for how to improve this project,
 
 ### Pull Requests
 
-This project does **NOT** accept pull requests. Any PRs submitted will be closed without discussion. For more details refer to the [`CONTRIBUTING.md`](https://github.com/thoukydides/.github/blob/master/CONTRIBUTING.md) file.
+As explained in [`CONTRIBUTING.md`](https://github.com/thoukydides/.github/blob/master/CONTRIBUTING.md), this project does **NOT** accept pull requests. Any PRs submitted will be closed without discussion.
 
 ## ISC License (ISC)
 
