@@ -36,8 +36,8 @@ export class TadoAPI {
         // Attempt OAuth authorisation
         const [verify, tokenPromise] = await this.tado.authenticate(token?.refresh_token);
         if (verify) {
-            this.log.warn(`Authorise Tado account access (within ${verify.expires_in} seconds):`);
-            this.log.warn(`  ${verify.verification_uri_complete}`);
+            this.log.info(`Authorise Tado account access (within ${verify.expires_in} seconds):`);
+            this.log.info(`  ${verify.verification_uri_complete}`);
         }
         await tokenPromise;
         this.log.info('Tado account access authorised');
