@@ -17,11 +17,11 @@
             "ui:widget": "hidden"
         },
         "pollInterval": {
-            "description": "Polling interval in seconds",
+            "description": "Polling interval in seconds. Tado° apply a quota of 100 requests/day to accounts without Auto-Assist subscriptions. A separate request is used per hot water controller.",
             "type": "integer",
             "minimum": 30,
             "maximum": 3600,
-            "default": 300
+            "default": 1200
         },
         "whiteList": {
             "description": "Only expose hot water controllers listed here, identified by their serial number. Leave empty to expose all devices.",

@@ -62,11 +62,18 @@ You can include additional settings in `matterbridge-tado-hw.config.json` to cus
 | Key                     | Default            | Description
 | ----------------------- | ------------------ | ---
 | `name`<br>`type`<br>`version` | n/a          | These are managed by Matterbridge and do not need to be set manually.
-| `pollInterval`          | 300                | Specifies the interval in seconds between polling the tado° API for the hot water zone status.
+| `pollInterval`          | 1200               | Specifies the interval in seconds between polling the tado° API for the hot water zone status.
 | `blackList`             | `[]`               | If the list is not empty, then any hot water control devices with matching serial numbers will not be exposed as Matter devices.
 | `whiteList`             | `[]`               | If the list is not empty, then only hot water control devices with matching serial numbers (and not on the `blacklist`) will be exposed as Matter devices.
 | `debug`                 | `false`            | Sets the logger level for this plugin to *Debug*, overriding the global Matterbridge logger level setting.
 | `unregisterOnShutdown`  | `false`            | Unregister all exposed devices on shutdown. This is used during development and testing; do not set it for normal use.
+
+Tado° apply daily usage limits to third-party use of their REST API. The default value for `pollInterval` issues one request per hot water controller every 20 minutes, resulting in 72 requests/day. Users with active Auto-Assist subscriptions may prefer to use a shorter interval.
+
+| Auto-Assist Subscription | Requests/Day |
+| :----------------------: | -----------: |
+| ❌                        | 100          |
+| ✅                        | 20,000       |
 
 </details>
 
