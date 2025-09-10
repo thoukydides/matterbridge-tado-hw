@@ -2,7 +2,7 @@
     "name": "matterbridge-tado-hw",
     "description": "A Matterbridge plugin that connects Tado° V2/V3/V3+ hot water control to the Matter smart home ecosystem",
     "displayName": "Tado° HW",
-    "version": "0.5.3",
+    "version": "0.5.4",
     "license": "ISC",
     "keywords": [
         "Matterbridge",
