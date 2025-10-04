@@ -4,6 +4,11 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+## [v0.5.5] - 2025-10-04
+### Changed
+* Compatibility with Matterbridge version 3.4.0.
+* Updated dependencies.
+
 ## [v0.5.4] - 2025-09-10
 ### Changed
 * Increased default poll interval from 5 minutes to 20 minutes due to the introduction of API quotas.
@@ -63,7 +68,8 @@ All notable changes to this project will be documented in this file.
 
 Copyright © 2025 Alexander Thoukydides
 
-[Unreleased]:       https://github.com/thoukydides/matterbridge-tado-hw/compare/v0.5.4...HEAD
+[Unreleased]:       https://github.com/thoukydides/matterbridge-tado-hw/compare/v0.5.5...HEAD
+[v0.5.5]:           https://github.com/thoukydides/matterbridge-tado-hw/compare/v0.5.4...v0.5.5
 [v0.5.4]:           https://github.com/thoukydides/matterbridge-tado-hw/compare/v0.5.3...v0.5.4
 [v0.5.3]:           https://github.com/thoukydides/matterbridge-tado-hw/compare/v0.5.2...v0.5.3
 [v0.5.2]:           https://github.com/thoukydides/matterbridge-tado-hw/compare/v0.5.1...v0.5.2
