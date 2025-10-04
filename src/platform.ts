@@ -1,7 +1,11 @@
 // Matterbridge plugin for Tado hot water control
 // Copyright © 2025 Alexander Thoukydides
 
-import { Matterbridge, MatterbridgeDynamicPlatform, PlatformConfig} from 'matterbridge';
+import {
+    MatterbridgeDynamicPlatform,
+    PlatformConfig,
+    PlatformMatterbridge
+} from 'matterbridge';
 import { AnsiLogger, LogLevel } from 'matterbridge/logger';
 import NodePersist from 'node-persist';
 import Path from 'path';
@@ -26,7 +30,7 @@ export class TadoHWPlatform extends MatterbridgeDynamicPlatform {
     devices:        TadoHWDevice[] = [];
 
     // Constructor
-    constructor(matterbridge: Matterbridge, log: AnsiLogger, config: PlatformConfig) {
+    constructor(matterbridge: PlatformMatterbridge, log: AnsiLogger, config: PlatformConfig) {
         log.logName = PLATFORM_NAME;
         log.info(`Initialising platform ${PLUGIN_NAME}`);
         super(matterbridge, log, config);
