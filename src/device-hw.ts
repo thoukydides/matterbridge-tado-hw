@@ -28,10 +28,10 @@ export class TadoHWDevice {
     ) {
         // Create a switch device, using the serial number as its identifier
         // HERE - Consider replacing this by waterHeater
-        const uniqueStorageKey = `Tado-${tadoHWZone.serialNumber}`;
+        const id = `Tado-${tadoHWZone.serialNumber}`;
         this.switch = new MatterbridgeEndpoint(
             [onOffSwitch, bridgedNode, powerSource],
-            { uniqueStorageKey },
+            { id },
             this.config.debug
         );
 
