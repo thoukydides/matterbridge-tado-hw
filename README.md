@@ -5,9 +5,9 @@
 
 # matterbridge-tado-hw
 
-[![npm](https://badgen.net/npm/v/matterbridge-tado-hw)](https://www.npmjs.com/package/matterbridge-tado-hw)
-[![npm](https://badgen.net/npm/dt/matterbridge-tado-hw)](https://www.npmjs.com/package/matterbridge-tado-hw)
-[![npm](https://badgen.net/npm/dw/matterbridge-tado-hw)](https://www.npmjs.com/package/matterbridge-tado-hw)
+[![npm](https://img.shields.io/npm/v/matterbridge-tado-hw?label=Latest)](https://www.npmjs.com/package/matterbridge-tado-hw)
+[![npm](https://img.shields.io/npm/dt/matterbridge-tado-hw?logo=npm&label=Downloads)](https://www.npmjs.com/package/matterbridge-tado-hw)
+[![npm](https://img.shields.io/npm/dw/matterbridge-tado-hw?label=)](https://www.npmjs.com/package/matterbridge-tado-hw)
 [![Build and Lint](https://github.com/thoukydides/matterbridge-tado-hw/actions/workflows/build.yml/badge.svg)](https://github.com/thoukydides/matterbridge-tado-hw/actions/workflows/build.yml)
 [![Test](https://github.com/thoukydides/matterbridge-tado-hw/actions/workflows/test.yml/badge.svg)](https://github.com/thoukydides/matterbridge-tado-hw/actions/workflows/test.yml)
 
