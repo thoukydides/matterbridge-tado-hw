@@ -52,25 +52,25 @@
     "dependencies": {
         "node-persist": "^4.0.4",
         "node-tado-client": "^1.1.1",
-        "semver": "^7.7.3",
+        "semver": "^7.7.4",
         "ts-interface-checker": "^1.0.2"
     },
     "devDependencies": {
-        "@actions/core": "^1.11.1",
-        "@eslint/eslintrc": "^3.3.1",
+        "@actions/core": "^3.0.0",
+        "@eslint/eslintrc": "^3.3.3",
         "@eslint/js": "^9.27.0",
-        "@tsconfig/node20": "^20.1.7",
+        "@tsconfig/node20": "^20.1.9",
         "@types/eslint__js": "^8.42.3",
-        "@types/node": "^20.19.25",
+        "@types/node": "^20.19.33",
         "@types/node-persist": "^3.1.8",
         "@types/semver": "^7.7.1",
-        "eslint": "^9.39.1",
-        "globals": "^16.5.0",
-        "rimraf": "^6.1.0",
+        "eslint": "^9.39.2",
+        "globals": "^17.3.0",
+        "rimraf": "^6.1.2",
         "ts-interface-builder": "^0.3.3",
-        "tsx": "^4.20.6",
+        "tsx": "^4.21.0",
         "typescript": "^5.9.3",
-        "typescript-eslint": "^8.47.0"
+        "typescript-eslint": "^8.55.0"
     },
     "scripts": {
         "setup-matterbridge": "npm i -g matterbridge@$MATTERBRIDGE_TAG && npm link matterbridge",
