@@ -3,14 +3,12 @@ description: Prepare build environment with selected Matterbridge installation
 
 inputs:
   node-version:
-    description: Node.js version to use
     required: false
     default: 20.x
 
-  matterbridge-branch:
-    description: If set, clone Matterbridge from the specified GitHub branch
+  matterbridge-tag:
     required: false
-    default: ''
+    default: 'latest'
 
 runs:
   using: composite
@@ -32,14 +30,7 @@ runs:
       run: npm ci
 
     - name: Install Matterbridge from npm
-      if: ${{ inputs.matterbridge-branch == '' }}
       shell: bash
-      run: npm run setup-matterbridge-npm
-
-    - name: Install Matterbridge from GitHub
-      if: ${{ inputs.matterbridge-branch != '' }}
-      shell: bash
-      run: npm run setup-matterbridge-github
+      run: npm run setup-matterbridge
       env:
-        MATTERBRIDGE_DIR: ${{ runner.temp }}/matterbridge
-        MATTERBRIDGE_BRANCH: ${{ inputs.matterbridge-branch }}
+        MATTERBRIDGE_TAG: ${{ inputs.matterbridge-tag }}
