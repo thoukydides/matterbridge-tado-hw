@@ -4,6 +4,10 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+## [v0.5.9] - 2026-02-12
+### Changed
+* Compatibility with Matterbridge version 3.5.4.
+
 ## [v0.5.8] - 2026-02-10
 ### Changed
 * Updated dependencies.
@@ -81,7 +85,8 @@ All notable changes to this project will be documented in this file.
 
 Copyright © 2025 Alexander Thoukydides
 
-[Unreleased]:       https://github.com/thoukydides/matterbridge-tado-hw/compare/v0.5.8...HEAD
+[Unreleased]:       https://github.com/thoukydides/matterbridge-tado-hw/compare/v0.5.9...HEAD
+[v0.5.9]:           https://github.com/thoukydides/matterbridge-tado-hw/compare/v0.5.8...v0.5.9
 [v0.5.8]:           https://github.com/thoukydides/matterbridge-tado-hw/compare/v0.5.7...v0.5.8
 [v0.5.7]:           https://github.com/thoukydides/matterbridge-tado-hw/compare/v0.5.6...v0.5.7
 [v0.5.6]:           https://github.com/thoukydides/matterbridge-tado-hw/compare/v0.5.5...v0.5.6
