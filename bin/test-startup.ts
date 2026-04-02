@@ -37,6 +37,7 @@ const ANSI_ESCAPE = /\x1B\[[0-9;]*[msuK]/g;
 
 // ANSI colour codes used for warnings and errors
 const ANSI_WARNING = new RegExp([wr, er, ft].join('|').replaceAll('\u001B[', '\\x1B\\['));
+process.env.FORCE_COLOR = '1'; // Ensure that ANSI colour codes are used
 
 // Length of time to wait
 const TIMEOUT_MATTERBRIDGE_MS = 45 * 1000; // 45 seconds
@@ -60,7 +61,7 @@ async function configureAndRegisterPlugin(): Promise<void> {
     clearTimeout(timeout);
 }
 
-// Run the plugin testlet rawOutput = '';
+// Run the plugin test
 async function testPlugin(): Promise<void> {
     // Launch Matterbridge, piping stdout and stderr for monitoring
     const child = spawn(SPAWN_COMMAND, SPAWN_ARGS, { stdio: 'pipe' });
