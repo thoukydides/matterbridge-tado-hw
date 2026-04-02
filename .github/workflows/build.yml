@@ -29,7 +29,7 @@ jobs:
         uses: ./.github/actions/prepare-environment
         with:
           node-version: ${{ matrix.node-version }}
-          matterbridge-branch: ${{ matrix.matterbridge-branch }}
+          matterbridge-tag: ${{ matrix.matterbridge-tag }}
 
       - name: Build the project
         run: npm run build
