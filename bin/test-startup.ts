@@ -34,10 +34,17 @@ const LINE_SPLIT_REGEX = /\r\n|(?<!\r)\n|\r(?!\n)/;
 // Match ANSI colour codes so that they can be stripped
 // eslint-disable-next-line no-control-regex
 const ANSI_ESCAPE = /\x1B\[[0-9;]*[msuK]/g;
+const NON_ANSI_ESCAPE = /\[(?:debug|info|notice|warn|error|fatal)\] /g;
 
 // ANSI colour codes used for warnings and errors
 const ANSI_WARNING = new RegExp([wr, er, ft].join('|').replaceAll('\u001B[', '\\x1B\\['));
+const NON_ANSI_WARNING = /\[(?:warn|error|fatal)\]/;
 process.env.FORCE_COLOR = '1'; // Ensure that ANSI colour codes are used
+
+// Warnings and errors that should not be treated as test failures
+const IGNORED_WARNINGS: RegExp[] = [
+    /Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set./
+];
 
 // Length of time to wait
 const TIMEOUT_MATTERBRIDGE_MS = 45 * 1000; // 45 seconds
@@ -80,7 +87,8 @@ async function testPlugin(): Promise<void> {
         const currentWarning: string[] = [];
         const flushWarning = (): void => {
             if (currentWarning.length) {
-                failureTests.add(`Log warning: ${currentWarning.join('\n')}`);
+                const warning = currentWarning.join('\n');
+                if (!IGNORED_WARNINGS.some(re => re.test(warning))) failureTests.add(`Log warning: ${warning}`);
                 currentWarning.length = 0;
             }
         };
@@ -92,8 +100,8 @@ async function testPlugin(): Promise<void> {
                 console.log(line);
 
                 // Check for any of the success or failure log messages
-                const cleanLine = line.replace(ANSI_ESCAPE, '');
-                if (ANSI_WARNING.test(line) || streamName === 'stderr') currentWarning.push(cleanLine);
+                const cleanLine = line.replace(ANSI_ESCAPE, '').replace(NON_ANSI_ESCAPE, '');
+                if (ANSI_WARNING.test(line) || NON_ANSI_WARNING.test(line) || streamName === 'stderr') currentWarning.push(cleanLine);
                 else flushWarning();
                 Object.entries(FAILURE_TESTS).filter(([, regexp]) => regexp.test(cleanLine))
                     .forEach(([name]) => failureTests.add(`${name}: ${cleanLine}`));
