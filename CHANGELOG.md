@@ -4,6 +4,11 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+## [v0.5.12] - 2026-05-15
+### Changed
+* Added Node.js 26 to supported versions.
+* Updated dependencies.
+
 ## [v0.5.11] - 2026-04-17
 ### Changed
 * Updated dependencies.
@@ -91,9 +96,10 @@ All notable changes to this project will be documented in this file.
 
 ---
 
-Copyright © 2025 Alexander Thoukydides
+Copyright © 2025-2026 Alexander Thoukydides
 
-[Unreleased]:       https://github.com/thoukydides/matterbridge-tado-hw/compare/v0.5.11...HEAD
+[Unreleased]:       https://github.com/thoukydides/matterbridge-tado-hw/compare/v0.5.12...HEAD
+[v0.5.12]:          https://github.com/thoukydides/matterbridge-tado-hw/compare/v0.5.11...v0.5.12
 [v0.5.11]:          https://github.com/thoukydides/matterbridge-tado-hw/compare/v0.5.10...v0.5.11
 [v0.5.10]:          https://github.com/thoukydides/matterbridge-tado-hw/compare/v0.5.9...v0.5.10
 [v0.5.9]:           https://github.com/thoukydides/matterbridge-tado-hw/compare/v0.5.8...v0.5.9
