@@ -27,7 +27,8 @@
         "Tado",
         "tadomap",
         "Thoukydides",
-        "tyriar"
+        "tyriar",
+        "vars"
     ],
     "files.exclude": {
         "node_modules/": true

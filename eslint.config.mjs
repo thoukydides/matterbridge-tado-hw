@@ -4,6 +4,16 @@ import globals from 'globals';
 import eslint from '@eslint/js';
 import { defineConfig } from 'eslint/config';
 import tseslint from 'typescript-eslint';
+import semver from 'semver';
+import { readFileSync } from 'fs';
+import { fileURLToPath } from 'url';
+
+// Disable deprecation warnings when building against Matterbridge prereleases
+const matterbridgePackagePath = fileURLToPath(new URL('node_modules/matterbridge/package.json', import.meta.url));
+/** @type { { version: string } } */
+// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+const matterbridgePackage = JSON.parse(readFileSync(matterbridgePackagePath, 'utf-8'));
+const isMatterbridgePrerelease = semver.prerelease(matterbridgePackage.version) !== null;
 
 // ESLint options
 export default defineConfig(
@@ -45,7 +55,9 @@ export default defineConfig(
             'no-trailing-spaces':                               ['warn'],
             'prefer-arrow-callback':                            ['warn'],
             'quotes':                                           ['warn', 'single', { avoidEscape: true }],
-            'semi':                                             ['warn']
+            'semi':                                             ['warn'],
+            // Special rules for this project
+            '@typescript-eslint/no-deprecated':                 [isMatterbridgePrerelease ? 'off' : 'error']
         }
     }, {
         files: ['**/*-types.ts'],
