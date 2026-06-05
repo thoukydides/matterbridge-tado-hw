@@ -97,7 +97,7 @@ export class TadoHWDevice {
         try {
             this.log.info(`Setting power ${on ? 'ON' : 'OFF'}`);
             await this.tadoHWZone.setPower(on);
-            await this.switch.updateAttribute(OnOff.Cluster.id, 'onOff', on, this.log);
+            await this.switch.updateAttribute(OnOff, 'onOff', on, this.log);
         } catch (err) {
             logError(this.log, 'Set power', err);
         }
@@ -107,7 +107,7 @@ export class TadoHWDevice {
     async pollPower(): Promise<void> {
         try {
             const on = await this.tadoHWZone.getPower();
-            await this.switch.updateAttribute(OnOff.Cluster.id, 'onOff', on, this.log);
+            await this.switch.updateAttribute(OnOff, 'onOff', on, this.log);
         } catch (err) {
             logError(this.log, 'Poll power', err);
         }
