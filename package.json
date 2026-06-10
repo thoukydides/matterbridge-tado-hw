@@ -90,5 +90,8 @@
         "postversion": "git push && git push --tags",
         "prepublishOnly": "npm run build && npm run lint",
         "test": "tsx bin/test-startup.ts"
+    },
+    "allowScripts": {
+        "esbuild@0.28.0": true
     }
 }
