@@ -4,7 +4,7 @@
 import {
     bridgedNode,
     MatterbridgeEndpoint,
-    onOffSwitch,
+    onOffLightSwitch,
     powerSource
 } from 'matterbridge';
 import { OnOff } from 'matterbridge/matter/clusters';
@@ -30,7 +30,7 @@ export class TadoHWDevice {
         // HERE - Consider replacing this by waterHeater
         const id = `Tado-${tadoHWZone.serialNumber}`;
         this.switch = new MatterbridgeEndpoint(
-            [onOffSwitch, bridgedNode, powerSource],
+            [onOffLightSwitch, bridgedNode, powerSource],
             { id },
             this.config.debug
         );
